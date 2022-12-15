@@ -3,3 +3,7 @@
   color: red;
   overflow-y: scroll;
 }
+
+.error {
+  color: red;
+}

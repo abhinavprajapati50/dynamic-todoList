@@ -14,7 +14,7 @@ export const CustomTableCell = ({
 
   // console.log('==============', row[name])
   return (
-    <Paper style={{ maxHeight: 200, overflow: 'auto' }}>
+    <Paper style={{ maxHeight: 200 }}>
       <TableRow align="left" className={classes.tableCell}>
         {isEditMode ? (
           <>

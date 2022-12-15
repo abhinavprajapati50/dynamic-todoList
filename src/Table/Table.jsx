@@ -148,18 +148,13 @@ export const TableData = () => {
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
   const [previous, setPrevious] = useState({})
-  const [counter, setCounter] = useState(0)
   const [nameError, setNameError] = useState({
     error: false,
     helperText: '',
   })
-  const [schedule, setSchedule] = useState([])
 
-  const [loads, setLoads] = useState([])
   const [undo, setUndo] = useState([])
-  const [redo, setRedo] = useState([])
   const [mementos, setMementos] = useState()
-  const [cellChangesIndex, setCellChangesIndex] = React.useState(() => -1)
   const [name, setName] = useState('')
   const [branch, setBranch] = useState('')
   const [sname, setSname] = useState('')
@@ -210,7 +205,7 @@ export const TableData = () => {
   const submithalClick = () => {
     const data = rows.map((row, i) => {
       if (validate(row.name) || validate(row.branch) || validate(row.sname)) {
-        alert('FAILED TO SUBMIT THE DATA !!')
+        alert('Somethings wents Wrong !!')
         setRows(...row)
         return
       }
@@ -287,10 +282,10 @@ export const TableData = () => {
   }
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden', pr: 5 }}>
+    <Paper sx={{ width: '100%', pr: 5 }}>
       <TableContainer
         component={Paper}
-        sx={{ maxHeight: 440, p: 5 }}
+        sx={{ maxHeight: 640, p: 5 }}
         // style={{ marginTop: '5rem' }}
         className={style.container}
       >
@@ -304,14 +299,12 @@ export const TableData = () => {
           // stickyHeader
           stickyHeader
           aria-label="sticky table"
+          sx={{ overflow: 'hidden' }}
           // aria-label="tom pagination table"
           // className={style.tablecontainer}
         >
-          <TableBody>
-            {(rowsPerPage > 0
-              ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              : rows
-            ).map((row, i) => {
+          <TableBody sx={{ overflow: 'hidden' }}>
+            {rows.map((row, i) => {
               return (
                 <TableRow key={row.id}>
                   <TableCell style={{ width: 40 }} align="right">
@@ -328,7 +321,7 @@ export const TableData = () => {
                         nameError,
                       }}
                     />
-                    <p> {validate(row.name)}</p>
+                    <p> {!row.name ? ' ' : validate(row.name)}</p>
                   </TableCell>
                   <TableCell style={{ width: 160 }} align="right">
                     <CustomTableCell
@@ -341,7 +334,7 @@ export const TableData = () => {
                         nameError,
                       }}
                     />
-                    <p> {validate(row.sname)}</p>
+                    <p> {!row.sname ? '' : validate(row.sname)}</p>
                   </TableCell>
                   <TableCell style={{ width: 160 }} align="right">
                     <CustomTableCell
@@ -354,7 +347,7 @@ export const TableData = () => {
                         nameError,
                       }}
                     />
-                    <p> {validate(row.branch)}</p>
+                    <p> {!row.branch ? '' : validate(row.branch)}</p>
                   </TableCell>
                   <TableCell style={{ width: 160 }} align="right">
                     <Button
@@ -382,7 +375,6 @@ export const TableData = () => {
             variant="contained"
             color="warning"
           >
-            {' '}
             Undo
           </Button>
           {/* <Button onClick={submithalClick}> */}
