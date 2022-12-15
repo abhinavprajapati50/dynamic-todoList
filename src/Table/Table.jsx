@@ -287,7 +287,7 @@ export const TableData = () => {
   }
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+    <Paper sx={{ width: '100%', overflow: 'hidden', pr: 5 }}>
       <TableContainer
         component={Paper}
         sx={{ maxHeight: 440, p: 5 }}
